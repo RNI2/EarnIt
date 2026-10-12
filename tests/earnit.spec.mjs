@@ -9,8 +9,8 @@ test.beforeEach(async ({ page }) => {
 
 async function child(page, name='Mia') {
   await page.getByRole('button', { name: 'Child demo' }).click();
-  await expect(page.getByText('Welcome, Mia')).toBeVisible();
   if (name !== 'Mia') await page.locator('header select').selectOption({ label: name+' · Teens' });
+  await expect(page.getByText('Welcome, '+name)).toBeVisible();
 }
 async function parent(page) { await page.getByRole('button', { name: 'Parent demo' }).click(); }
 async function approveFirst(page) {
